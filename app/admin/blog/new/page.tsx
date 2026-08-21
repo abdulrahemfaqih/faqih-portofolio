@@ -1,2 +1,5 @@
-// Placeholder — /admin/blog/new
-export default function AdminBlogNewPage() { return null; }
+import BlogForm from "@/components/admin/BlogForm";
+
+export default function AdminBlogNewPage() {
+  return <BlogForm />;
+}

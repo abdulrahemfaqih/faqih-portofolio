@@ -88,16 +88,191 @@ export type BlogPostSummary = Pick<
   "id" | "title" | "slug" | "cover_image_url" | "excerpt" | "published_at" | "tags"
 >;
 
-// Database type untuk @supabase/supabase-js (opsional, helper typing)
-export type Database = {
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
+// Database type lengkap untuk @supabase/supabase-js v2
+export interface Database {
   public: {
     Tables: {
-      about_me: { Row: AboutMe };
-      social_links: { Row: SocialLink };
-      skills: { Row: Skill };
-      experience: { Row: Experience };
-      projects: { Row: Project };
-      blog_posts: { Row: BlogPost };
+      about_me: {
+        Row: AboutMe;
+        Insert: {
+          id?: string;
+          full_name: string;
+          role_title: string;
+          headline?: string | null;
+          bio?: string | null;
+          avatar_url?: string | null;
+          cv_url?: string | null;
+          email?: string | null;
+          location?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          full_name?: string;
+          role_title?: string;
+          headline?: string | null;
+          bio?: string | null;
+          avatar_url?: string | null;
+          cv_url?: string | null;
+          email?: string | null;
+          location?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      social_links: {
+        Row: SocialLink;
+        Insert: {
+          id?: string;
+          platform: string;
+          url: string;
+          display_order?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          platform?: string;
+          url?: string;
+          display_order?: number;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      skills: {
+        Row: Skill;
+        Insert: {
+          id?: string;
+          category: SkillCategory;
+          name: string;
+          display_order?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          category?: SkillCategory;
+          name?: string;
+          display_order?: number;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      experience: {
+        Row: Experience;
+        Insert: {
+          id?: string;
+          company_name: string;
+          company_logo_url?: string | null;
+          position_title: string;
+          description_points?: string[];
+          start_month: number;
+          start_year: number;
+          end_month?: number | null;
+          end_year?: number | null;
+          is_current?: boolean;
+          display_order?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_name?: string;
+          company_logo_url?: string | null;
+          position_title?: string;
+          description_points?: string[];
+          start_month?: number;
+          start_year?: number;
+          end_month?: number | null;
+          end_year?: number | null;
+          is_current?: boolean;
+          display_order?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      projects: {
+        Row: Project;
+        Insert: {
+          id?: string;
+          title: string;
+          slug: string;
+          thumbnail_url?: string | null;
+          description: string;
+          tech_stack?: string[];
+          live_url?: string | null;
+          repo_url?: string | null;
+          is_featured?: boolean;
+          display_order?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          slug?: string;
+          thumbnail_url?: string | null;
+          description?: string;
+          tech_stack?: string[];
+          live_url?: string | null;
+          repo_url?: string | null;
+          is_featured?: boolean;
+          display_order?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      blog_posts: {
+        Row: BlogPost;
+        Insert: {
+          id?: string;
+          title: string;
+          slug: string;
+          cover_image_url?: string | null;
+          excerpt?: string | null;
+          content: string;
+          status?: PostStatus;
+          tags?: string[];
+          published_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          slug?: string;
+          cover_image_url?: string | null;
+          excerpt?: string | null;
+          content?: string;
+          status?: PostStatus;
+          tags?: string[];
+          published_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+    };
+    Views: {
+      [_ in never]: never;
+    };
+    Functions: {
+      [_ in never]: never;
+    };
+    Enums: {
+      skill_category: SkillCategory;
+      post_status: PostStatus;
+    };
+    CompositeTypes: {
+      [_ in never]: never;
     };
   };
-};
+}

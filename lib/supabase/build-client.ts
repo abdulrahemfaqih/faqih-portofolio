@@ -1,5 +1,4 @@
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/types/supabase";
 
 /**
  * Supabase client untuk build-time (generateStaticParams, generateMetadata).
@@ -7,8 +6,9 @@ import type { Database } from "@/types/supabase";
  * Menggunakan anon key — hanya untuk membaca data publik.
  */
 export function createBuildTimeClient() {
-  return createSupabaseClient<Database>(
+  return createSupabaseClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 }
+

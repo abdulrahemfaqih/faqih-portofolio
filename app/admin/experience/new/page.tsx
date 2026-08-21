@@ -1,2 +1,5 @@
-// Placeholder — /admin/experience/new
-export default function AdminExperienceNewPage() { return null; }
+import ExperienceForm from "@/components/admin/ExperienceForm";
+
+export default function AdminExperienceNewPage() {
+  return <ExperienceForm />;
+}
