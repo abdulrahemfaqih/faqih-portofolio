@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description:
       "Portfolio resmi Abdul Rahem Faqih (Faqih). Fullstack Developer yang membangun aplikasi web modern, frontend, backend, database, dan integrasi API.",
     type: "website",
-    images: ["/me.png"],
+    images: ["/logo.png"],
   },
 };
 

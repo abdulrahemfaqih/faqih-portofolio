@@ -64,16 +64,16 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/me.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: `${SITE_NAME} | Fullstack Developer`,
       },
       {
-        url: "/logo.png",
-        width: 512,
-        height: 512,
-        alt: `Logo ${SITE_NAME}`,
+        url: "/me.png",
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} | Foto Profil`,
       },
     ],
   },
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: ["/me.png"],
+    images: ["/logo.png"],
     creator: "@abdulrahemfaqih",
   },
   robots: {
