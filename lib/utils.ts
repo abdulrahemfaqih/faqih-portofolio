@@ -42,12 +42,12 @@ export function formatExperiencePeriod({
   const startLabel = `${MONTH_NAMES_ID[start_month - 1]} ${start_year}`;
 
   if (is_current) {
-    return `${startLabel} – Sekarang`;
+    return `${startLabel} - Sekarang`;
   }
 
   if (end_month && end_year) {
     const endLabel = `${MONTH_NAMES_ID[end_month - 1]} ${end_year}`;
-    return `${startLabel} – ${endLabel}`;
+    return `${startLabel} - ${endLabel}`;
   }
 
   return startLabel;

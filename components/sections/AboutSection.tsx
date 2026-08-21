@@ -90,7 +90,7 @@ export default function AboutSection({ about, socialLinks }: AboutSectionProps) 
                 ) : (
                   <p>
                     Fullstack Developer dengan fokus pada pengembangan aplikasi
-                    web modern — dari antarmuka yang terasa halus hingga backend
+                    web modern, dari antarmuka yang responsif hingga backend
                     yang solid. Saya peduli pada detail, performa, dan kode yang
                     mudah dipelihara.
                   </p>

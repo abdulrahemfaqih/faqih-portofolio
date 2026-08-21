@@ -16,7 +16,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
           <SectionHeader
             eyebrow="Proyek"
             title="Yang sudah saya bangun"
-            description="Pilihan proyek yang mencerminkan pendekatan saya terhadap pengembangan — fungsional, terstruktur, dan mudah dipelihara."
+            description="Pilihan proyek yang mencerminkan pendekatan saya terhadap pengembangan: fungsional, terstruktur, dan mudah dipelihara."
           />
         </ScrollReveal>
 

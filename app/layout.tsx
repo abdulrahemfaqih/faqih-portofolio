@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
-    template: `%s — ${SITE_NAME}`,
+    template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   keywords: KEYWORDS,
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
         url: "/me.png",
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} — Fullstack Developer`,
+        alt: `${SITE_NAME} | Fullstack Developer`,
       },
       {
         url: "/logo.png",

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description: "Tulisan tentang pengembangan web, teknologi, dan proses berpikir di balik proyek-proyek saya.",
   openGraph: {
-    title: "Blog — Abdul Rahem Faqih",
+    title: "Blog | Abdul Rahem Faqih",
     description: "Tulisan tentang pengembangan web, teknologi, dan proses berpikir di balik proyek-proyek saya.",
   },
 };

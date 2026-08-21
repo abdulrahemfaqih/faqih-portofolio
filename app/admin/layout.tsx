@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AdminLayoutClient from "@/components/admin/AdminLayoutClient";
 
 export const metadata: Metadata = {
-  title: "Admin Panel — Abdul Rahem Faqih",
+  title: "Admin Panel | Abdul Rahem Faqih",
   robots: {
     index: false,
     follow: false,

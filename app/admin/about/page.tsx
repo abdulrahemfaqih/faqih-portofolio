@@ -275,7 +275,7 @@ export default function AdminAboutPage() {
             type="text"
             value={headline}
             onChange={(e) => setHeadline(e.target.value)}
-            placeholder="Contoh: Membangun aplikasi web modern — dari antarmuka ke infrastruktur."
+            placeholder="Contoh: Membangun aplikasi web modern dari antarmuka ke infrastruktur."
             className="px-3 py-2.5 rounded-sm border border-[--ink-12] bg-transparent text-[--ink] text-sm focus-visible:outline-2 focus-visible:outline-[--ink] focus-visible:outline-offset-2"
           />
         </div>

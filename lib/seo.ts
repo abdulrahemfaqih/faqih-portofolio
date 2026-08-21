@@ -6,7 +6,7 @@ export const SITE_URL =
   "https://abdulrahemfaqih.vercel.app";
 
 export const SITE_NAME = "Abdul Rahem Faqih";
-export const SITE_TITLE = "Abdul Rahem Faqih (Faqih) — Fullstack Developer & Software Engineer";
+export const SITE_TITLE = "Abdul Rahem Faqih (Faqih) | Fullstack Developer & Software Engineer";
 export const SITE_DESCRIPTION =
   "Portfolio resmi Abdul Rahem Faqih (Faqih), Fullstack Developer yang berfokus pada pengembangan aplikasi web modern, frontend, backend, database, dan integrasi API.";
 

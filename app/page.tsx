@@ -23,14 +23,14 @@ import {
 } from "@/lib/queries";
 
 export const metadata: Metadata = {
-  title: "Abdul Rahem Faqih (Faqih) — Fullstack Developer & Software Engineer",
+  title: "Abdul Rahem Faqih (Faqih) | Fullstack Developer & Software Engineer",
   description:
     "Portfolio resmi Abdul Rahem Faqih (Faqih). Fullstack Developer yang membangun aplikasi web modern, frontend, backend, database, dan integrasi API.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Abdul Rahem Faqih (Faqih) — Fullstack Developer & Software Engineer",
+    title: "Abdul Rahem Faqih (Faqih) | Fullstack Developer & Software Engineer",
     description:
       "Portfolio resmi Abdul Rahem Faqih (Faqih). Fullstack Developer yang membangun aplikasi web modern, frontend, backend, database, dan integrasi API.",
     type: "website",
