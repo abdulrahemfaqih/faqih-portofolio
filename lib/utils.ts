@@ -54,6 +54,25 @@ export function formatExperiencePeriod({
 }
 
 /**
+ * Mapping tipe pekerjaan ke label Bahasa Indonesia yang profesional.
+ */
+export const EMPLOYMENT_TYPE_LABELS: Record<string, string> = {
+  full_time: "Penuh Waktu",
+  part_time: "Paruh Waktu",
+  internship: "Magang",
+  contract: "Kontrak",
+  freelance: "Freelance",
+};
+
+/**
+ * Format label tipe pekerjaan.
+ */
+export function formatEmploymentType(type?: string | null): string {
+  if (!type) return "";
+  return EMPLOYMENT_TYPE_LABELS[type] || type;
+}
+
+/**
  * Format tanggal publish blog dalam Bahasa Indonesia.
  * Contoh: "21 Agustus 2026"
  */

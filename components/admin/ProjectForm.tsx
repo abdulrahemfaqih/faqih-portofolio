@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { Project } from "@/types/supabase";
 import { slugify } from "@/lib/utils";
 import ImageUpload from "./ImageUpload";
+import MultiImageUpload from "./MultiImageUpload";
 import TagInput from "./TagInput";
 import { ArrowLeft, Spinner, Check } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
@@ -26,6 +27,7 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
   const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(
     initialData?.thumbnail_url || null
   );
+  const [screenshots, setScreenshots] = useState<string[]>(initialData?.screenshots || []);
   const [description, setDescription] = useState(initialData?.description || "");
   const [techStack, setTechStack] = useState<string[]>(initialData?.tech_stack || []);
   const [liveUrl, setLiveUrl] = useState(initialData?.live_url || "");
@@ -73,6 +75,7 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
         title: title.trim(),
         slug: cleanSlug,
         thumbnail_url: thumbnailUrl,
+        screenshots: screenshots,
         description: description.trim(),
         tech_stack: techStack,
         live_url: liveUrl.trim() || null,
@@ -170,9 +173,21 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
             bucket="project-images"
             value={thumbnailUrl}
             onChange={setThumbnailUrl}
-            label="Thumbnail / Screenshot Proyek"
+            label="Thumbnail Utama Proyek"
             aspectRatio="video"
-            helperText="Rasio 16:9 disarankan, tampil di kartu dan detail proyek"
+            helperText="Rasio 16:9 disarankan, tampil di kartu landing page dan header detail proyek"
+          />
+        </div>
+
+        {/* Screenshots / Galeri Proyek */}
+        <div className="pt-4 border-t border-[--ink-12]">
+          <MultiImageUpload
+            bucket="project-images"
+            folder="project-screenshots"
+            values={screenshots}
+            onChange={setScreenshots}
+            label="Galeri Screenshot Proyek (Tampil di Halaman Detail)"
+            helperText="Upload screenshot tampilan fitur, mockup, atau arsitektur proyek (maks 10 foto, otomatis dikompresi)."
           />
         </div>
 

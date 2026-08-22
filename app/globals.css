@@ -310,3 +310,41 @@ body {
 .surface-alt {
   background-color: var(--surface-alt);
 }
+
+/* ------------------------------------------
+   Experience Bullet List
+   ------------------------------------------ */
+.experience-list {
+  list-style: disc outside !important;
+  padding-left: 1.25rem !important;
+  margin-top: 0.75rem !important;
+}
+
+.experience-list li {
+  display: list-item !important;
+  padding-left: 0.25rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  color: var(--ink-70);
+}
+
+.experience-list li:last-child {
+  margin-bottom: 0;
+}
+
+.experience-list li::marker {
+  color: var(--ink);
+  font-size: 1em;
+}
+
+/* ------------------------------------------
+   Scrollbar Utilities
+   ------------------------------------------ */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

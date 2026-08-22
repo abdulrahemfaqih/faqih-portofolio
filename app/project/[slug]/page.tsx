@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, GithubLogo } from "@phosphor-icons/react/dist/ssr";
 import { getProjectBySlug } from "@/lib/queries";
 import { createBuildTimeClient } from "@/lib/supabase/build-client";
+import ProjectScreenshotsGallery from "@/components/project/ProjectScreenshotsGallery";
 
 interface Params {
   params: Promise<{ slug: string }>;
@@ -83,6 +84,12 @@ export default async function ProjectDetailPage({ params }: Params) {
                 <p key={i} className="mb-4 last:mb-0">{para}</p>
               ))}
             </div>
+
+            {/* Galeri Screenshot Proyek */}
+            <ProjectScreenshotsGallery
+              screenshots={project.screenshots || []}
+              projectTitle={project.title}
+            />
           </div>
 
           {/* Kanan: Meta info */}

@@ -37,6 +37,13 @@ export interface Skill {
   created_at: string;
 }
 
+export type EmploymentType =
+  | "full_time"
+  | "part_time"
+  | "internship"
+  | "contract"
+  | "freelance";
+
 export interface Experience {
   id: string;
   company_name: string;
@@ -48,6 +55,8 @@ export interface Experience {
   end_month: number | null; // null jika masih berjalan
   end_year: number | null;  // null jika masih berjalan
   is_current: boolean;
+  employment_type: EmploymentType | null;
+  photos: string[]; // array of photo URLs
   display_order: number;
   created_at: string;
   updated_at: string;
@@ -58,6 +67,7 @@ export interface Project {
   title: string;
   slug: string;
   thumbnail_url: string | null;
+  screenshots: string[]; // array of screenshot URLs
   description: string;
   tech_stack: string[]; // array, contoh: ['Next.js', 'Supabase', 'Tailwind']
   live_url: string | null;
@@ -177,6 +187,8 @@ export interface Database {
           end_month?: number | null;
           end_year?: number | null;
           is_current?: boolean;
+          employment_type?: EmploymentType | null;
+          photos?: string[];
           display_order?: number;
           created_at?: string;
           updated_at?: string;
@@ -192,6 +204,8 @@ export interface Database {
           end_month?: number | null;
           end_year?: number | null;
           is_current?: boolean;
+          employment_type?: EmploymentType | null;
+          photos?: string[];
           display_order?: number;
           created_at?: string;
           updated_at?: string;
@@ -205,6 +219,7 @@ export interface Database {
           title: string;
           slug: string;
           thumbnail_url?: string | null;
+          screenshots?: string[];
           description: string;
           tech_stack?: string[];
           live_url?: string | null;
@@ -219,6 +234,7 @@ export interface Database {
           title?: string;
           slug?: string;
           thumbnail_url?: string | null;
+          screenshots?: string[];
           description?: string;
           tech_stack?: string[];
           live_url?: string | null;

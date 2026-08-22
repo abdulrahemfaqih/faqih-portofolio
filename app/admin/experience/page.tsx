@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import type { Experience } from "@/types/supabase";
-import { formatExperiencePeriod } from "@/lib/utils";
+import { formatExperiencePeriod, formatEmploymentType } from "@/lib/utils";
 import ConfirmModal from "@/components/admin/ConfirmModal";
 import { Plus, PencilSimple, Trash, Buildings, Spinner } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
@@ -29,13 +29,13 @@ export default function AdminExperiencePage() {
       const { data, error } = await supabase
         .from("experience")
         .select("*")
-        .order("start_year", { ascending: false })
-        .order("start_month", { ascending: false });
+        .order("display_order", { ascending: true })
+        .order("start_year", { ascending: false });
 
       if (error) throw error;
       setExperiences(data || []);
     } catch (err: any) {
-      toast.error("Gagal memuat data: " + err.message);
+      toast.error("Gagal memuat pengalaman: " + err.message);
     } finally {
       setIsLoading(false);
     }
@@ -49,11 +49,11 @@ export default function AdminExperiencePage() {
         .from("experience")
         .delete()
         .eq("id", deleteTargetId);
-      if (error) throw error;
 
+      if (error) throw error;
       toast.success("Pengalaman kerja berhasil dihapus");
+      setExperiences((prev) => prev.filter((exp) => exp.id !== deleteTargetId));
       setDeleteTargetId(null);
-      fetchExperiences();
     } catch (err: any) {
       toast.error("Gagal menghapus: " + err.message);
     } finally {
@@ -64,38 +64,40 @@ export default function AdminExperiencePage() {
   return (
     <div className="space-y-8 pb-16">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[--ink-12]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[--ink-12]">
         <div>
-          <span className="eyebrow-label mb-2">Manajemen Konten</span>
           <h1 className="text-h1 font-[family-name:var(--font-fraunces)] text-[--ink]">
             Pengalaman Kerja
           </h1>
           <p className="text-small text-[--ink-70] mt-1">
-            Kelola riwayat pekerjaan dan tanggung jawab yang tampil di timeline Experience.
+            Kelola riwayat karir, posisi, perusahaan, dan tanggung jawab Anda.
           </p>
         </div>
         <Link
           href="/admin/experience/new"
-          className="btn-solid text-xs inline-flex items-center gap-1.5 self-start sm:self-auto"
+          className="btn-solid text-xs px-4 py-2.5 self-start sm:self-auto inline-flex items-center gap-2 shrink-0"
         >
-          <Plus size={14} weight="bold" />
+          <Plus size={16} weight="bold" />
           Tambah Pengalaman
         </Link>
       </div>
 
+      {/* List */}
       {isLoading ? (
-        <div className="py-20 flex items-center justify-center text-[--ink-70] gap-2">
-          <Spinner size={24} className="animate-spin" />
-          <span className="text-sm font-[family-name:var(--font-geist-mono)]">Memuat pengalaman...</span>
+        <div className="py-20 flex flex-col items-center justify-center gap-3">
+          <Spinner size={32} className="animate-spin text-[--ink]" />
+          <p className="font-[family-name:var(--font-geist-mono)] text-xs text-[--ink-45]">
+            Memuat daftar pengalaman...
+          </p>
         </div>
       ) : experiences.length === 0 ? (
-        <div className="card p-12 text-center border-dashed space-y-3">
-          <p className="text-sm text-[--ink-70]">
-            Belum ada riwayat pengalaman kerja yang tersimpan.
+        <div className="py-16 text-center border border-dashed border-[--ink-12] rounded-sm space-y-3">
+          <p className="font-[family-name:var(--font-geist-mono)] text-sm text-[--ink-45]">
+            Belum ada pengalaman kerja yang ditambahkan.
           </p>
           <Link
             href="/admin/experience/new"
-            className="btn-outline text-xs inline-flex items-center gap-1.5"
+            className="btn-outline text-xs px-4 py-2 inline-flex items-center gap-2"
           >
             <Plus size={14} weight="bold" />
             Tambahkan Pengalaman Pertama
@@ -128,6 +130,11 @@ export default function AdminExperiencePage() {
                     <h3 className="text-base font-semibold text-[--ink]">
                       {exp.position_title}
                     </h3>
+                    {exp.employment_type && (
+                      <span className="chip text-[0.625rem] bg-[--surface-alt] text-[--ink-70]">
+                        {formatEmploymentType(exp.employment_type)}
+                      </span>
+                    )}
                     {exp.is_current && (
                       <span className="chip text-[0.625rem] bg-[--surface-alt] text-[--ink]">
                         Sekarang

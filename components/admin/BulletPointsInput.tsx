@@ -48,7 +48,7 @@ export default function BulletPointsInput({
       <div className="space-y-2">
         {value.map((point, index) => (
           <div key={index} className="flex items-start gap-2">
-            <span className="mt-3 w-1.5 h-1.5 rounded-full bg-[--ink-45] shrink-0" />
+            <span className="mt-3 w-[6px] h-[6px] rounded-full bg-[--ink-70] shrink-0" />
             <textarea
               rows={2}
               value={point}

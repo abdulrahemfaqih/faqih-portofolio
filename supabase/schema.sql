@@ -96,6 +96,8 @@ create table experience (
   end_month int check (end_month between 1 and 12),
   end_year int,
   is_current boolean not null default false,
+  employment_type text check (employment_type in ('full_time', 'part_time', 'internship', 'contract', 'freelance')),
+  photos text[] not null default '{}',
   display_order int not null default 0,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
@@ -116,6 +118,7 @@ create table projects (
   title text not null,
   slug text not null unique,
   thumbnail_url text,
+  screenshots text[] not null default '{}',
   description text not null,
   tech_stack text[] not null default '{}',
   live_url text,
