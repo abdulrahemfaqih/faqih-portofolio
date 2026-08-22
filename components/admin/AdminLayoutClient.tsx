@@ -46,12 +46,12 @@ export default function AdminLayoutClient({ children }: AdminLayoutClientProps) 
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-50 md:hidden flex">
+        <div className="fixed inset-0 z-50 md:hidden flex animate-in fade-in duration-200">
           <div
-            className="fixed inset-0 bg-[--ink]/50 backdrop-blur-xs"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md transition-all"
             onClick={() => setMobileOpen(false)}
           />
-          <div className="relative z-10 w-64 h-full bg-[--paper]">
+          <div className="relative z-10 w-64 max-w-[85vw] h-full bg-[#fafaf8] bg-[--paper] shadow-2xl overflow-y-auto">
             <AdminSidebar onCloseMobile={() => setMobileOpen(false)} />
           </div>
         </div>
@@ -60,18 +60,18 @@ export default function AdminLayoutClient({ children }: AdminLayoutClientProps) 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile Header bar */}
-        <div className="md:hidden flex items-center justify-between p-4 border-b border-[--ink-12] bg-[--paper] sticky top-0 z-20">
+        <header className="md:hidden flex items-center justify-between px-4 py-3.5 border-b border-[--ink-12] bg-[--paper]/85 backdrop-blur-md sticky top-0 z-20 transition-all">
           <span className="font-[family-name:var(--font-fraunces)] font-bold text-base text-[--ink]">
             Portfolio Admin
           </span>
           <button
             onClick={() => setMobileOpen(true)}
-            className="p-2 text-[--ink] rounded-sm hover:bg-[--surface-alt]"
+            className="p-2 text-[--ink] rounded-sm hover:bg-[--surface-alt] transition-colors"
             aria-label="Buka menu"
           >
             <List size={22} />
           </button>
-        </div>
+        </header>
 
         {/* Content wrapper */}
         <main className="flex-1 p-6 md:p-10 max-w-6xl w-full mx-auto">

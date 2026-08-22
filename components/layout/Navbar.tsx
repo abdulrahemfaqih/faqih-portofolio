@@ -25,6 +25,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isBlog = pathname.startsWith("/blog");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -91,10 +92,18 @@ export default function Navbar() {
           </nav>
 
           {/* Right Action (Desktop Blog & Mobile Toggle) */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Link
               href="/blog"
-              className="btn-outline text-xs hidden sm:inline-flex"
+              className={`
+                font-[family-name:var(--font-geist-mono)] text-xs tracking-[0.08em] uppercase
+                px-3 py-1.5 rounded-sm transition-all duration-200 hidden sm:inline-flex items-center gap-1
+                ${
+                  isBlog
+                    ? "text-[--ink] bg-[--surface-alt] font-medium"
+                    : "text-[--ink-70] hover:text-[--ink] hover:bg-[--surface-alt]"
+                }
+              `}
             >
               Blog
             </Link>
@@ -122,8 +131,8 @@ export default function Navbar() {
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="md:hidden border-t border-[--ink-12] bg-[--paper]/98 backdrop-blur-lg overflow-hidden"
             >
-              <div className="container-main py-6 flex flex-col gap-4">
-                <nav className="flex flex-col gap-3" aria-label="Navigasi mobile">
+              <div className="container-main py-5 flex flex-col gap-2">
+                <nav className="flex flex-col gap-1" aria-label="Navigasi mobile">
                   {NAV_LINKS.map(({ href, label }) => (
                     <Link
                       key={href}
@@ -131,8 +140,8 @@ export default function Navbar() {
                       onClick={() => setMobileMenuOpen(false)}
                       className="
                         font-[family-name:var(--font-geist-mono)] text-sm tracking-[0.08em]
-                        uppercase text-[--ink-70] hover:text-[--ink] py-2 border-b border-[--ink-12]/50
-                        transition-colors flex items-center justify-between
+                        uppercase text-[--ink-70] hover:text-[--ink] hover:bg-[--surface-alt]
+                        px-3 py-2.5 rounded-sm transition-colors flex items-center justify-between
                       "
                     >
                       <span>{label}</span>
@@ -140,14 +149,20 @@ export default function Navbar() {
                     </Link>
                   ))}
 
+                  <div className="my-1 border-t border-[--ink-12]" />
+
                   <Link
                     href="/blog"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="
+                    className={`
                       font-[family-name:var(--font-geist-mono)] text-sm tracking-[0.08em]
-                      uppercase text-[--ink] py-2 border-b border-[--ink-12]/50
-                      font-semibold flex items-center justify-between
-                    "
+                      uppercase px-3 py-2.5 rounded-sm transition-colors flex items-center justify-between
+                      ${
+                        isBlog
+                          ? "text-[--ink] bg-[--surface-alt] font-semibold"
+                          : "text-[--ink-70] hover:text-[--ink] hover:bg-[--surface-alt]"
+                      }
+                    `}
                   >
                     <span>Blog</span>
                     <span className="text-[--ink-45] text-xs">→</span>

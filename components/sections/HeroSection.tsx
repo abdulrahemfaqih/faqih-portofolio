@@ -21,7 +21,7 @@ const STAGGER = 0.08; // 80ms antar elemen
 export default function HeroSection({ about }: HeroProps) {
   const name = about?.full_name ?? "Abdul Rahem Faqih";
   const roleTitle = about?.role_title ?? "Fullstack Developer";
-  const headline = about?.headline ?? "Membangun aplikasi web modern dari antarmuka ke infrastruktur.";
+  const headline = about?.headline ?? "Membangun aplikasi web dan mobile modern, dari antarmuka hingga infrastruktur.";
 
   return (
     <section
