@@ -7,7 +7,7 @@ import type { Experience } from "@/types/supabase";
 import { formatExperiencePeriod, formatEmploymentType } from "@/lib/utils";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { Buildings, MagnifyingGlassPlus, Images } from "@phosphor-icons/react";
+import { Buildings, MagnifyingGlassPlus } from "@phosphor-icons/react";
 
 // Lazy load ImageLightboxModal hanya ketika dibutuhkan
 const ImageLightboxModal = dynamic(
@@ -76,7 +76,7 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
                       </div>
 
                     {/* Kanan: Detail pengalaman */}
-                    <div className="flex-1 pt-0.5 sm:pt-1">
+                    <div className="flex-1 min-w-0 pt-0.5 sm:pt-1">
                       {/* Rentang waktu & Tipe Pekerjaan */}
                       <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap mb-2 sm:mb-2.5">
                         <p className="font-[family-name:var(--font-geist-mono)] text-xs tracking-wider text-[--ink-45]">
@@ -122,48 +122,43 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
                         );
                       })()}
 
-                      {/* Galeri Foto Dokumentasi */}
+                      {/* Galeri Foto Dokumentasi (Horizontal Scroll Rapi) */}
                       {exp.photos && exp.photos.length > 0 && (
-                        <div className="mt-4 sm:mt-5 pt-3 border-t border-[--ink-12]/50">
-                          <div className="flex items-center gap-2 mb-2.5">
-                            <Images size={14} weight="regular" className="text-[--ink-45]" />
-                            <span className="font-[family-name:var(--font-geist-mono)] text-[0.6875rem] uppercase tracking-wider text-[--ink-45]">
-                              Dokumentasi Kegiatan ({exp.photos.length})
-                            </span>
-                          </div>
-
-                          <div className="flex items-center gap-3 overflow-x-auto py-1 no-scrollbar">
-                            {exp.photos.map((photoUrl, photoIdx) => (
-                              <button
-                                key={photoIdx}
-                                type="button"
-                                onClick={() =>
-                                  setActiveLightbox({
-                                    images: exp.photos,
-                                    index: photoIdx,
-                                    title: `${exp.position_title} — ${exp.company_name}`,
-                                  })
-                                }
-                                className="group relative w-24 sm:w-28 aspect-[4/3] shrink-0 rounded-md overflow-hidden border border-[--ink-12] bg-[--paper] shadow-xs hover:border-[--ink-70] transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-[--ink]"
-                                aria-label={`Lihat foto ${photoIdx + 1} dari ${exp.company_name}`}
-                              >
-                                <Image
-                                  src={photoUrl}
-                                  alt={`Foto ${photoIdx + 1} - ${exp.company_name}`}
-                                  fill
-                                  quality={75}
-                                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                                  sizes="(max-width: 640px) 96px, 112px"
-                                  loading="lazy"
-                                />
-                                {/* Hover overlay dengan icon magnifying glass */}
-                                <div className="absolute inset-0 bg-[--ink]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                  <div className="p-1 rounded-full bg-[--paper]/95 text-[--ink] shadow-xs transform scale-90 group-hover:scale-100 transition-transform">
-                                    <MagnifyingGlassPlus size={14} weight="bold" />
+                        <div className="mt-4 sm:mt-5 pt-3.5 border-t border-[--ink-12] w-full max-w-full">
+                          <div className="relative w-full max-w-full overflow-hidden">
+                            <div className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto py-1 no-scrollbar touch-pan-x overscroll-x-contain">
+                              {exp.photos.map((photoUrl, photoIdx) => (
+                                <button
+                                  key={photoIdx}
+                                  type="button"
+                                  onClick={() =>
+                                    setActiveLightbox({
+                                      images: exp.photos,
+                                      index: photoIdx,
+                                      title: `${exp.position_title} — ${exp.company_name}`,
+                                    })
+                                  }
+                                  className="group relative w-24 sm:w-28 aspect-[4/3] shrink-0 rounded-md overflow-hidden border border-[--ink-12] bg-[--paper] shadow-xs hover:border-[--ink-70] transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-[--ink]"
+                                  aria-label={`Lihat foto ${photoIdx + 1} dari ${exp.company_name}`}
+                                >
+                                  <Image
+                                    src={photoUrl}
+                                    alt={`Foto ${photoIdx + 1} - ${exp.company_name}`}
+                                    fill
+                                    quality={75}
+                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                    sizes="(max-width: 640px) 96px, 112px"
+                                    loading="lazy"
+                                  />
+                                  {/* Hover overlay dengan icon magnifying glass */}
+                                  <div className="absolute inset-0 bg-[--ink]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <div className="p-1 rounded-full bg-[--paper]/95 text-[--ink] shadow-xs transform scale-90 group-hover:scale-100 transition-transform">
+                                      <MagnifyingGlassPlus size={14} weight="bold" />
+                                    </div>
                                   </div>
-                                </div>
-                              </button>
-                            ))}
+                                </button>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       )}
