@@ -7,7 +7,7 @@ import type { Experience } from "@/types/supabase";
 import { formatExperiencePeriod, formatEmploymentType } from "@/lib/utils";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { Buildings, MagnifyingGlassPlus } from "@phosphor-icons/react";
+import { Buildings, MagnifyingGlassPlus, Images } from "@phosphor-icons/react";
 
 // Lazy load ImageLightboxModal hanya ketika dibutuhkan
 const ImageLightboxModal = dynamic(
@@ -33,6 +33,7 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
           <SectionHeader
             eyebrow="Pengalaman"
             title="Di mana saya pernah bekerja"
+            description="Perjalanan karier, kontribusi teknis, dan pengalaman kerja profesional yang membentuk keahlian saya."
           />
         </ScrollReveal>
 
@@ -43,53 +44,58 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
             </p>
           </div>
         ) : (
-          <div className="relative">
-            {/* Garis vertikal timeline — memberi makna kronologis (design.md §7) */}
+          <div className="relative max-w-4xl">
+            {/* Garis vertikal timeline — menghubungkan logo-logo pengalaman */}
             <div
-              className="absolute left-6 top-0 bottom-0 w-px bg-[--ink-12]"
+              className="absolute left-[21px] sm:left-[23px] top-6 bottom-8 w-px bg-[--ink-12]"
               aria-hidden="true"
             />
 
             <div className="space-y-0">
-              {experiences.map((exp, index) => (
-                <ScrollReveal key={exp.id} delay={index * 0.1}>
-                  <div className="relative flex gap-8 pb-12 last:pb-0">
-                    {/* Kiri: Logo perusahaan / titik timeline */}
-                    <div className="relative z-10 shrink-0 flex flex-col items-center">
-                      <div className="w-12 h-12 rounded-sm border border-[--ink-12] bg-[--paper] overflow-hidden flex items-center justify-center">
-                        {exp.company_logo_url ? (
-                          <Image
-                            src={exp.company_logo_url}
-                            alt={`Logo ${exp.company_name}`}
-                            width={48}
-                            height={48}
-                            quality={80}
-                            className="object-contain p-1"
-                          />
-                        ) : (
-                          <Buildings size={20} weight="light" className="text-[--ink-45]" />
-                        )}
+              {experiences.map((exp, index) => {
+                const isLast = index === experiences.length - 1;
+                return (
+                  <ScrollReveal key={exp.id} delay={index * 0.1}>
+                    <div className={`relative flex gap-5 sm:gap-8 ${isLast ? "pb-0" : "pb-10 sm:pb-12"}`}>
+                      {/* Kiri: Logo perusahaan / titik timeline */}
+                      <div className="relative z-10 shrink-0 flex flex-col items-center">
+                        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg sm:rounded-md border border-[--ink-12] bg-[--paper] shadow-xs overflow-hidden flex items-center justify-center p-1">
+                          {exp.company_logo_url ? (
+                            <Image
+                              src={exp.company_logo_url}
+                              alt={`Logo ${exp.company_name}`}
+                              width={48}
+                              height={48}
+                              quality={80}
+                              className="object-contain"
+                            />
+                          ) : (
+                            <Buildings size={22} weight="light" className="text-[--ink-45]" />
+                          )}
+                        </div>
                       </div>
-                    </div>
 
                     {/* Kanan: Detail pengalaman */}
-                    <div className="flex-1 pt-1">
+                    <div className="flex-1 pt-0.5 sm:pt-1">
                       {/* Rentang waktu & Tipe Pekerjaan */}
-                      <div className="flex items-center gap-2.5 flex-wrap mb-2">
-                        <p className="font-[family-name:var(--font-geist-mono)] text-xs tracking-wide text-[--ink-45]">
+                      <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap mb-2 sm:mb-2.5">
+                        <p className="font-[family-name:var(--font-geist-mono)] text-xs tracking-wider text-[--ink-45]">
                           {formatExperiencePeriod(exp)}
                         </p>
                         {exp.employment_type && (
-                          <span className="chip text-[0.625rem] py-0.5 px-2 bg-[--paper] text-[--ink-70] border-[--ink-12]">
+                          <span className="chip text-[0.6875rem] py-0.5 px-2.5 bg-[--paper] text-[--ink-70] border-[--ink-12]">
                             {formatEmploymentType(exp.employment_type)}
                           </span>
                         )}
                       </div>
 
-                      <h3 className="text-h2 font-[family-name:var(--font-fraunces)] text-[--ink] leading-snug">
+                      {/* Jabatan / Posisi */}
+                      <h3 className="text-xl sm:text-2xl font-[family-name:var(--font-fraunces)] font-semibold text-[--ink] leading-snug tracking-tight">
                         {exp.position_title}
                       </h3>
-                      <p className="text-small text-[--ink-70] mt-1 mb-4">
+
+                      {/* Perusahaan / Organisasi */}
+                      <p className="text-sm sm:text-base text-[--ink-70] mt-1 mb-4 sm:mb-5 font-normal">
                         {exp.company_name}
                       </p>
 
@@ -108,7 +114,7 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
                         if (points.length === 0) return null;
 
                         return (
-                          <ul className="experience-list text-body">
+                          <ul className="experience-list">
                             {points.map((point, i) => (
                               <li key={i}>{point}</li>
                             ))}
@@ -116,10 +122,17 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
                         );
                       })()}
 
-                      {/* Galeri Foto Dokumentasi (1 Baris Horizontal Scroll Ringkas) */}
+                      {/* Galeri Foto Dokumentasi */}
                       {exp.photos && exp.photos.length > 0 && (
-                        <div className="mt-4 pt-3.5 border-t border-[--ink-12]">
-                          <div className="flex items-center gap-2.5 overflow-x-auto py-1 no-scrollbar">
+                        <div className="mt-4 sm:mt-5 pt-3 border-t border-[--ink-12]/50">
+                          <div className="flex items-center gap-2 mb-2.5">
+                            <Images size={14} weight="regular" className="text-[--ink-45]" />
+                            <span className="font-[family-name:var(--font-geist-mono)] text-[0.6875rem] uppercase tracking-wider text-[--ink-45]">
+                              Dokumentasi Kegiatan ({exp.photos.length})
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-3 overflow-x-auto py-1 no-scrollbar">
                             {exp.photos.map((photoUrl, photoIdx) => (
                               <button
                                 key={photoIdx}
@@ -131,7 +144,7 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
                                     title: `${exp.position_title} — ${exp.company_name}`,
                                   })
                                 }
-                                className="group relative w-20 sm:w-24 aspect-[4/3] shrink-0 rounded-sm overflow-hidden border border-[--ink-12] bg-[--paper] hover:border-[--ink-45] transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-[--ink]"
+                                className="group relative w-24 sm:w-28 aspect-[4/3] shrink-0 rounded-md overflow-hidden border border-[--ink-12] bg-[--paper] shadow-xs hover:border-[--ink-70] transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-[--ink]"
                                 aria-label={`Lihat foto ${photoIdx + 1} dari ${exp.company_name}`}
                               >
                                 <Image
@@ -140,13 +153,13 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
                                   fill
                                   quality={75}
                                   className="object-cover transition-transform duration-300 group-hover:scale-105"
-                                  sizes="96px"
+                                  sizes="(max-width: 640px) 96px, 112px"
                                   loading="lazy"
                                 />
                                 {/* Hover overlay dengan icon magnifying glass */}
-                                <div className="absolute inset-0 bg-[--ink]/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                  <div className="p-1 rounded-full bg-[--paper]/90 text-[--ink] shadow-xs transform scale-90 group-hover:scale-100 transition-transform">
-                                    <MagnifyingGlassPlus size={13} weight="bold" />
+                                <div className="absolute inset-0 bg-[--ink]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                  <div className="p-1 rounded-full bg-[--paper]/95 text-[--ink] shadow-xs transform scale-90 group-hover:scale-100 transition-transform">
+                                    <MagnifyingGlassPlus size={14} weight="bold" />
                                   </div>
                                 </div>
                               </button>
@@ -157,7 +170,8 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
                     </div>
                   </div>
                 </ScrollReveal>
-              ))}
+              );
+            })}
             </div>
           </div>
         )}

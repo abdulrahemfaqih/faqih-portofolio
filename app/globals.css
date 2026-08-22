@@ -315,26 +315,31 @@ body {
    Experience Bullet List
    ------------------------------------------ */
 .experience-list {
-  list-style: disc outside !important;
-  padding-left: 1.25rem !important;
-  margin-top: 0.75rem !important;
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-top: 1rem !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .experience-list li {
-  display: list-item !important;
-  padding-left: 0.25rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.6;
+  position: relative;
+  padding-left: 1.25rem;
+  line-height: 1.7;
   color: var(--ink-70);
+  font-size: 0.9375rem;
 }
 
-.experience-list li:last-child {
-  margin-bottom: 0;
-}
-
-.experience-list li::marker {
-  color: var(--ink);
-  font-size: 1em;
+.experience-list li::before {
+  content: '';
+  position: absolute;
+  left: 0.125rem;
+  top: 0.65em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--ink-45);
 }
 
 /* ------------------------------------------

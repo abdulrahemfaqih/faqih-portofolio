@@ -53,22 +53,24 @@ export default function AboutSection({ about, socialLinks }: AboutSectionProps) 
         <div className="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-20 items-start">
           {/* Kiri: Foto */}
           <ScrollReveal delay={0.1}>
-            <div className="relative">
-              <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-sm border border-[--ink-12]">
+            <div className="relative max-w-sm">
+              {/* Aksen garis dekoratif di belakang foto */}
+              <div
+                className="absolute inset-0 translate-x-3 translate-y-3 border border-[--ink-12] rounded-sm pointer-events-none"
+                aria-hidden="true"
+              />
+
+              {/* Kontainer Foto Utama */}
+              <div className="relative z-10 aspect-[4/5] w-full overflow-hidden rounded-sm border border-[--ink-12] bg-[--surface-alt]">
                 <Image
                   src={about?.avatar_url ?? "/me.png"}
                   alt={`Foto ${about?.full_name ?? "Abdul Rahem Faqih"}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, 40vw"
+                  sizes="(max-width: 768px) 100vw, 384px"
                   className="object-cover object-top"
                   priority
                 />
               </div>
-              {/* Aksen garis dekoratif di belakang foto */}
-              <div
-                className="absolute -bottom-3 -right-3 w-full h-full border border-[--ink-12] rounded-sm -z-10"
-                aria-hidden="true"
-              />
             </div>
           </ScrollReveal>
 
