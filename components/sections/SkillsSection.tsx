@@ -13,11 +13,11 @@ const CATEGORY_CONFIG: Record<SkillCategory, { label: string; description: strin
   },
   framework_library: {
     label: "Framework & Library",
-    description: "Tools utama dalam workflow pengembangan saya",
+    description: "Framework dan library yang saya pakai untuk membangun aplikasi, dari backend sampai frontend dan mobile.",
   },
   tools_practice: {
     label: "Tools & Praktik",
-    description: "Ekosistem dan metodologi yang mendukung kerja saya",
+    description: "Tools dan praktik yang mendukung workflow pengembangan saya, dari kolaborasi kode sampai deployment.",
   },
 };
 
