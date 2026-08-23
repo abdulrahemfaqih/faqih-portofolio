@@ -24,15 +24,16 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
+      className="h-full"
     >
       <Link
         href={`/project/${project.slug}`}
-        className="group block card overflow-hidden"
+        className="group flex flex-col h-full card overflow-hidden"
         data-cursor="Lihat"
         aria-label={`Lihat detail proyek ${project.title}`}
       >
         {/* Thumbnail */}
-        <div className="relative aspect-[16/10] overflow-hidden bg-[--surface-alt]">
+        <div className="relative aspect-[16/10] overflow-hidden bg-[--surface-alt] shrink-0 border-b border-[--ink-12]">
           {project.thumbnail_url ? (
             <Image
               src={project.thumbnail_url}
@@ -52,9 +53,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         {/* Konten card */}
-        <div className="p-5">
+        <div className="p-5 flex flex-col flex-1">
           <div className="flex items-start justify-between gap-4 mb-3">
-            <h3 className="text-h2 font-[family-name:var(--font-fraunces)] text-[--ink] leading-snug">
+            <h3 className="text-xl font-[family-name:var(--font-fraunces)] font-bold text-[--ink] leading-snug">
               {project.title}
             </h3>
             <ArrowUpRight
@@ -69,7 +70,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </p>
 
           {/* Tech stack tags (maksimal 3 ditampilkan) */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mt-auto pt-2">
             {project.tech_stack.slice(0, 3).map((tech) => (
               <span key={tech} className="chip">{tech}</span>
             ))}

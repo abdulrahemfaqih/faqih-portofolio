@@ -8,7 +8,6 @@
 
 import { motion } from "motion/react";
 import type { AboutMe } from "@/types/supabase";
-import Link from "next/link";
 import { ArrowDown } from "@phosphor-icons/react";
 
 interface HeroProps {
@@ -75,6 +74,18 @@ export default function HeroSection({ about }: HeroProps) {
                 Hubungi Saya
               </a>
             </motion.div>
+
+            {/* Status di mobile */}
+            <motion.div
+              className="mt-6 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 + STAGGER * 4 }}
+            >
+              <p className="font-[family-name:var(--font-geist-mono)] text-xs text-[--ink-70]">
+                Terbuka untuk freelance & kolaborasi full-time
+              </p>
+            </motion.div>
           </div>
 
           {/* Kanan: Detail / meta info */}
@@ -99,7 +110,7 @@ export default function HeroSection({ about }: HeroProps) {
             <div>
               <p className="text-mono text-[--ink-45] mb-1">Status</p>
               <p className="font-[family-name:var(--font-geist-mono)] text-sm text-[--ink-70]">
-                Terbuka untuk peluang baru
+                Terbuka untuk freelance & kolaborasi full-time
               </p>
             </div>
           </motion.div>
