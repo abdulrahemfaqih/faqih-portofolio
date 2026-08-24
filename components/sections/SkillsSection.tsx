@@ -54,33 +54,35 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-x-12 md:gap-y-0 md:grid-rows-[auto_1fr]">
             {CATEGORY_ORDER.map((category, colIndex) => {
               const config = CATEGORY_CONFIG[category];
               const categorySkills = grouped[category];
               if (categorySkills.length === 0) return null;
 
               return (
-                <ScrollReveal key={category} delay={colIndex * 0.12}>
-                  <div>
-                    {/* Header kolom */}
-                    <div className="mb-6 pb-4 border-b border-[--ink-12]">
-                      <h3 className="font-[family-name:var(--font-geist-mono)] text-xs tracking-[0.1em] uppercase text-[--ink] mb-1">
-                        {config.label}
-                      </h3>
-                      <p className="text-small text-[--ink-45]">
-                        {config.description}
-                      </p>
-                    </div>
+                <ScrollReveal
+                  key={category}
+                  delay={colIndex * 0.12}
+                  className="flex flex-col md:grid md:grid-rows-subgrid md:row-span-2"
+                >
+                  {/* Header kolom */}
+                  <div className="flex flex-col justify-start pb-4 border-b border-[--ink-12] mb-6">
+                    <h3 className="font-[family-name:var(--font-geist-mono)] text-xs tracking-[0.1em] uppercase text-[--ink] mb-1">
+                      {config.label}
+                    </h3>
+                    <p className="text-small text-[--ink-45]">
+                      {config.description}
+                    </p>
+                  </div>
 
-                    {/* Chips — tanpa progress bar (design.md §7) */}
-                    <div className="flex flex-wrap gap-2">
-                      {categorySkills.map((skill) => (
-                        <span key={skill.id} className="chip">
-                          {skill.name}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Chips — tanpa progress bar (design.md §7) */}
+                  <div className="flex flex-wrap gap-2 content-start">
+                    {categorySkills.map((skill) => (
+                      <span key={skill.id} className="chip">
+                        {skill.name}
+                      </span>
+                    ))}
                   </div>
                 </ScrollReveal>
               );
