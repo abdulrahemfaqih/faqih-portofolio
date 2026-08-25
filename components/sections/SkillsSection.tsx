@@ -54,7 +54,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-x-12 md:gap-y-0 md:grid-rows-[auto_1fr]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-x-8 lg:gap-x-12 md:gap-y-0 md:grid-rows-[auto_1fr]">
             {CATEGORY_ORDER.map((category, colIndex) => {
               const config = CATEGORY_CONFIG[category];
               const categorySkills = grouped[category];
@@ -67,7 +67,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                   className="flex flex-col md:grid md:grid-rows-subgrid md:row-span-2"
                 >
                   {/* Header kolom */}
-                  <div className="flex flex-col justify-start pb-4 border-b border-[--ink-12] mb-6">
+                  <div className="flex flex-col justify-start pb-3 sm:pb-4 border-b border-[--ink-12] mb-4 sm:mb-6">
                     <h3 className="font-[family-name:var(--font-geist-mono)] text-xs tracking-[0.1em] uppercase text-[--ink] mb-1">
                       {config.label}
                     </h3>

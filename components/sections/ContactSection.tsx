@@ -67,7 +67,7 @@ export default function ContactSection({ about, socialLinks }: ContactSectionPro
         </ScrollReveal>
 
         {/* Layout tidak simetris: headline kiri, form kanan (design.md §7) */}
-        <div className="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-8 md:gap-12 lg:gap-16">
           {/* Kiri: Ajakan + kontak langsung */}
           <ScrollReveal delay={0.1}>
             <div className="flex flex-col gap-8">

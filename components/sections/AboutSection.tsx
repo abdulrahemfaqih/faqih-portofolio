@@ -50,10 +50,10 @@ export default function AboutSection({ about, socialLinks }: AboutSectionProps) 
         </ScrollReveal>
 
         {/* Split layout 5/7 — asimetris (design.md §7) */}
-        <div className="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-20 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-8 md:gap-12 lg:gap-16 items-start">
           {/* Kiri: Foto */}
           <ScrollReveal delay={0.1}>
-            <div className="relative max-w-sm">
+            <div className="relative max-w-xs sm:max-w-sm mx-auto md:mx-0 w-full">
               {/* Aksen garis dekoratif di belakang foto */}
               <div
                 className="absolute inset-0 translate-x-3 translate-y-3 border border-[--ink-12] rounded-sm pointer-events-none"

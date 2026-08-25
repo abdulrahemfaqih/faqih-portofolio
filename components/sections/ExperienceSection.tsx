@@ -56,7 +56,7 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
                 const isLast = index === experiences.length - 1;
                 return (
                   <ScrollReveal key={exp.id} delay={index * 0.1}>
-                    <div className={`relative flex gap-5 sm:gap-8 ${isLast ? "pb-0" : "pb-10 sm:pb-12"}`}>
+                    <div className={`relative flex gap-5 sm:gap-8 ${isLast ? "pb-0" : "pb-8 sm:pb-10"}`}>
                       {/* Kiri: Logo perusahaan / titik timeline */}
                       <div className="relative z-10 shrink-0 flex flex-col items-center">
                         <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg sm:rounded-md border border-[--ink-12] bg-[--paper] shadow-xs overflow-hidden flex items-center justify-center p-1">
