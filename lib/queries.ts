@@ -4,6 +4,7 @@
  */
 
 import { createClient } from "@/lib/supabase/server";
+import { createBuildTimeClient } from "@/lib/supabase/build-client";
 import type {
   AboutMe,
   BlogPost,
@@ -18,7 +19,7 @@ import type {
    About Me
    -------------------------------- */
 export async function getAboutMe(): Promise<AboutMe | null> {
-  const supabase = await createClient();
+  const supabase = createBuildTimeClient();
   const { data, error } = await supabase
     .from("about_me")
     .select("*")
@@ -35,7 +36,7 @@ export async function getAboutMe(): Promise<AboutMe | null> {
    Social Links
    -------------------------------- */
 export async function getSocialLinks(): Promise<SocialLink[]> {
-  const supabase = await createClient();
+  const supabase = createBuildTimeClient();
   const { data, error } = await supabase
     .from("social_links")
     .select("*")
@@ -52,7 +53,7 @@ export async function getSocialLinks(): Promise<SocialLink[]> {
    Skills
    -------------------------------- */
 export async function getSkills(): Promise<Skill[]> {
-  const supabase = await createClient();
+  const supabase = createBuildTimeClient();
   const { data, error } = await supabase
     .from("skills")
     .select("*")
@@ -70,7 +71,7 @@ export async function getSkills(): Promise<Skill[]> {
    Experience
    -------------------------------- */
 export async function getExperiences(): Promise<Experience[]> {
-  const supabase = await createClient();
+  const supabase = createBuildTimeClient();
   const { data, error } = await supabase
     .from("experience")
     .select("*")
@@ -88,7 +89,7 @@ export async function getExperiences(): Promise<Experience[]> {
    Projects
    -------------------------------- */
 export async function getProjects(): Promise<Project[]> {
-  const supabase = await createClient();
+  const supabase = createBuildTimeClient();
   const { data, error } = await supabase
     .from("projects")
     .select("*")
@@ -102,7 +103,7 @@ export async function getProjects(): Promise<Project[]> {
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  const supabase = await createClient();
+  const supabase = createBuildTimeClient();
   const { data, error } = await supabase
     .from("projects")
     .select("*")
@@ -120,7 +121,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
    Blog Posts
    -------------------------------- */
 export async function getPublishedBlogPosts(): Promise<BlogPostSummary[]> {
-  const supabase = await createClient();
+  const supabase = createBuildTimeClient();
   const { data, error } = await supabase
     .from("blog_posts")
     .select("id, title, slug, cover_image_url, excerpt, published_at, tags")
@@ -135,7 +136,7 @@ export async function getPublishedBlogPosts(): Promise<BlogPostSummary[]> {
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
-  const supabase = await createClient();
+  const supabase = createBuildTimeClient();
   const { data, error } = await supabase
     .from("blog_posts")
     .select("*")

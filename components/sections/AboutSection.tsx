@@ -68,7 +68,6 @@ export default function AboutSection({ about, socialLinks }: AboutSectionProps) 
                   fill
                   sizes="(max-width: 768px) 100vw, 384px"
                   className="object-cover object-top"
-                  priority
                 />
               </div>
             </div>

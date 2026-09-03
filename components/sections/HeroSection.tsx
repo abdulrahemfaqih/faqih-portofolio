@@ -14,9 +14,6 @@ interface HeroProps {
   about: AboutMe | null;
 }
 
-// Stagger timing untuk intro sequence
-const STAGGER = 0.08; // 80ms antar elemen
-
 export default function HeroSection({ about }: HeroProps) {
   const name = about?.full_name ?? "Abdul Rahem Faqih";
   const roleTitle = about?.role_title ?? "Fullstack Developer";
@@ -32,7 +29,7 @@ export default function HeroSection({ about }: HeroProps) {
         className="absolute top-14 left-0 right-0 h-px bg-[--ink-12]"
         initial={{ scaleX: 0, originX: 0 }}
         animate={{ scaleX: 1 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         aria-hidden="true"
       />
 
@@ -40,9 +37,9 @@ export default function HeroSection({ about }: HeroProps) {
         {/* Eyebrow — nama kecil mono sebagai "wordmark" intro */}
         <motion.div
           className="eyebrow-label mb-4 sm:mb-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: "easeOut", delay: 0.05 }}
         >
           {name}
         </motion.div>
@@ -54,18 +51,18 @@ export default function HeroSection({ about }: HeroProps) {
             <motion.h1
               id="hero-heading"
               className="text-display font-[family-name:var(--font-fraunces)] font-bold leading-[1.12] tracking-[-0.025em] text-[--ink]"
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             >
               {headline}
             </motion.h1>
 
             <motion.div
               className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4"
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 + STAGGER * 3 }}
+              transition={{ duration: 0.45, ease: "easeOut", delay: 0.2 }}
             >
               <a href="#projects" className="btn-solid">
                 Lihat Proyek
@@ -80,7 +77,7 @@ export default function HeroSection({ about }: HeroProps) {
               className="mt-6 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 + STAGGER * 4 }}
+              transition={{ duration: 0.4, delay: 0.25 }}
             >
               <p className="font-[family-name:var(--font-geist-mono)] text-xs text-[--ink-70]">
                 Terbuka untuk freelance & kolaborasi full-time
@@ -93,7 +90,7 @@ export default function HeroSection({ about }: HeroProps) {
             className="hidden md:flex flex-col gap-5 lg:gap-6 pb-1"
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 + STAGGER * 2 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
           >
             <div>
               <p className="text-mono text-[--ink-45] mb-1">Peran</p>
@@ -122,7 +119,7 @@ export default function HeroSection({ about }: HeroProps) {
         className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[--ink-45] pointer-events-none hidden sm:flex"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.5 }}
+        transition={{ delay: 0.35, duration: 0.4 }}
         aria-hidden="true"
       >
         <span className="font-[family-name:var(--font-geist-mono)] text-[0.6875rem] tracking-[0.1em] uppercase">

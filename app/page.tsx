@@ -39,6 +39,8 @@ export const metadata: Metadata = {
 };
 
 
+export const revalidate = 60; // ISR: revalidate setiap 60 detik
+
 export default async function HomePage() {
   // Fetch semua data paralel — lebih cepat dari sequential await
   const [about, socialLinks, skills, experiences, projects] = await Promise.all([
