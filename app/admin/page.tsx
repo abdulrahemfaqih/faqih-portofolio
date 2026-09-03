@@ -59,7 +59,7 @@ export default async function AdminDashboardPage() {
     {
       label: "Keahlian / Skills",
       value: skillsCount ?? 0,
-      sublabel: "3 kategori keahlian",
+      sublabel: "4 kategori keahlian",
       icon: Code,
       href: "/admin/skills",
     },

@@ -4,6 +4,7 @@
 export type SkillCategory =
   | "programming_language"
   | "framework_library"
+  | "database"
   | "tools_practice";
 
 export type PostStatus = "draft" | "published";

@@ -15,6 +15,10 @@ const CATEGORY_CONFIG: Record<SkillCategory, { label: string; description: strin
     label: "Framework & Library",
     description: "Framework dan library yang saya pakai untuk membangun aplikasi, dari backend sampai frontend dan mobile.",
   },
+  database: {
+    label: "Database",
+    description: "Database relasional dan non-relasional yang saya gunakan untuk pemodelan data dan persistensi.",
+  },
   tools_practice: {
     label: "Tools & Praktik",
     description: "Tools dan praktik yang mendukung workflow pengembangan saya, dari kolaborasi kode sampai deployment.",
@@ -24,6 +28,7 @@ const CATEGORY_CONFIG: Record<SkillCategory, { label: string; description: strin
 const CATEGORY_ORDER: SkillCategory[] = [
   "programming_language",
   "framework_library",
+  "database",
   "tools_practice",
 ];
 
@@ -54,7 +59,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-x-8 lg:gap-x-12 md:gap-y-0 md:grid-rows-[auto_1fr]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-x-8 lg:gap-x-8 md:gap-y-10 lg:gap-y-0 lg:grid-rows-[auto_1fr]">
             {CATEGORY_ORDER.map((category, colIndex) => {
               const config = CATEGORY_CONFIG[category];
               const categorySkills = grouped[category];
@@ -64,7 +69,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                 <ScrollReveal
                   key={category}
                   delay={colIndex * 0.12}
-                  className="flex flex-col md:grid md:grid-rows-subgrid md:row-span-2"
+                  className="flex flex-col lg:grid lg:grid-rows-subgrid lg:row-span-2"
                 >
                   {/* Header kolom */}
                   <div className="flex flex-col justify-start pb-3 sm:pb-4 border-b border-[--ink-12] mb-4 sm:mb-6">

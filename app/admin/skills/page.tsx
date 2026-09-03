@@ -19,9 +19,14 @@ const CATEGORIES: { value: SkillCategory; label: string; description: string }[]
     description: "Contoh: Next.js, React, Laravel, Tailwind CSS, Node.js",
   },
   {
+    value: "database",
+    label: "Database",
+    description: "Contoh: PostgreSQL, MySQL, MongoDB, Redis, Supabase",
+  },
+  {
     value: "tools_practice",
     label: "Tools & Praktik",
-    description: "Contoh: Git, Docker, Supabase, PostgreSQL, CI/CD, Agile",
+    description: "Contoh: Git, Docker, CI/CD, Agile, Linux, Figma",
   },
 ];
 
@@ -153,7 +158,7 @@ export default function AdminSkillsPage() {
             Keahlian (Skills)
           </h1>
           <p className="text-small text-[--ink-70] mt-1">
-            Kelola daftar keahlian yang dikelompokkan ke dalam 3 kategori utama.
+            Kelola daftar keahlian yang dikelompokkan ke dalam 4 kategori utama.
           </p>
         </div>
         <button

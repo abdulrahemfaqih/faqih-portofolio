@@ -26,8 +26,12 @@ $$ language plpgsql;
 create type skill_category as enum (
   'programming_language',
   'framework_library',
+  'database',
   'tools_practice'
 );
+
+-- Note migrasi untuk database Supabase yang sudah ada sebelumnya:
+-- ALTER TYPE skill_category ADD VALUE IF NOT EXISTS 'database' BEFORE 'tools_practice';
 
 create type post_status as enum ('draft', 'published');
 
