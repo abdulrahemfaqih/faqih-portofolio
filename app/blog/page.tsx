@@ -20,6 +20,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 60; // ISR: revalidate setiap 60 detik
+
 interface BlogCardProps {
   post: BlogPostSummary;
   index: number;

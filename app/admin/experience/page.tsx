@@ -9,6 +9,7 @@ import { formatExperiencePeriod, formatEmploymentType } from "@/lib/utils";
 import ConfirmModal from "@/components/admin/ConfirmModal";
 import { Plus, PencilSimple, Trash, Buildings, Spinner } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
+import { revalidateHomeAction } from "@/app/actions/revalidate";
 
 export default function AdminExperiencePage() {
   const supabase = createClient();
@@ -51,6 +52,7 @@ export default function AdminExperiencePage() {
         .eq("id", deleteTargetId);
 
       if (error) throw error;
+      await revalidateHomeAction();
       toast.success("Pengalaman kerja berhasil dihapus");
       setExperiences((prev) => prev.filter((exp) => exp.id !== deleteTargetId));
       setDeleteTargetId(null);

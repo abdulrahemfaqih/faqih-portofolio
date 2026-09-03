@@ -11,6 +11,7 @@ import TagInput from "./TagInput";
 import MarkdownRenderer from "@/components/ui/MarkdownRenderer";
 import { ArrowLeft, Spinner, Check, Eye, Code } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
+import { revalidateBlogAction } from "@/app/actions/revalidate";
 
 interface BlogFormProps {
   initialData?: BlogPost | null;
@@ -102,6 +103,9 @@ export default function BlogForm({ initialData }: BlogFormProps) {
             : "Draf artikel berhasil disimpan!"
         );
       }
+
+      // Revalidate cache di Vercel secara instan
+      await revalidateBlogAction(cleanSlug, initialData?.slug);
 
       router.push("/admin/blog");
       router.refresh();

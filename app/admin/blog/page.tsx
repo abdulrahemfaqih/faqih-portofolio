@@ -16,6 +16,7 @@ import {
   Article,
 } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
+import { revalidateBlogAction } from "@/app/actions/revalidate";
 
 export default function AdminBlogPage() {
   const supabase = createClient();
@@ -56,6 +57,9 @@ export default function AdminBlogPage() {
         .delete()
         .eq("id", deleteTargetId);
       if (error) throw error;
+
+      const deletedPost = posts.find((p) => p.id === deleteTargetId);
+      await revalidateBlogAction(deletedPost?.slug);
 
       toast.success("Artikel berhasil dihapus");
       setDeleteTargetId(null);

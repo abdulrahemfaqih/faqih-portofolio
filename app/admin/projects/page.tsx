@@ -15,6 +15,7 @@ import {
   Star,
 } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
+import { revalidateProjectAction } from "@/app/actions/revalidate";
 
 export default function AdminProjectsPage() {
   const supabase = createClient();
@@ -56,6 +57,9 @@ export default function AdminProjectsPage() {
         .delete()
         .eq("id", deleteTargetId);
       if (error) throw error;
+
+      const deletedProject = projects.find((p) => p.id === deleteTargetId);
+      await revalidateProjectAction(deletedProject?.slug);
 
       toast.success("Proyek berhasil dihapus");
       setDeleteTargetId(null);

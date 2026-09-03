@@ -10,6 +10,7 @@ import MultiImageUpload from "./MultiImageUpload";
 import BulletPointsInput from "./BulletPointsInput";
 import { ArrowLeft, Spinner, Check } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
+import { revalidateHomeAction } from "@/app/actions/revalidate";
 
 const MONTHS = [
   { value: 1, label: "Januari" },
@@ -103,6 +104,7 @@ export default function ExperienceForm({ initialData }: ExperienceFormProps) {
         toast.success("Pengalaman kerja berhasil ditambahkan");
       }
 
+      await revalidateHomeAction();
       router.push("/admin/experience");
       router.refresh();
     } catch (err: any) {

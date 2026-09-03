@@ -11,6 +11,7 @@ import MultiImageUpload from "./MultiImageUpload";
 import TagInput from "./TagInput";
 import { ArrowLeft, Spinner, Check } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
+import { revalidateProjectAction } from "@/app/actions/revalidate";
 
 interface ProjectFormProps {
   initialData?: Project | null;
@@ -96,6 +97,9 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
         if (error) throw error;
         toast.success("Proyek baru berhasil ditambahkan");
       }
+
+      // Revalidate cache di Vercel secara instan
+      await revalidateProjectAction(cleanSlug, initialData?.slug);
 
       router.push("/admin/projects");
       router.refresh();

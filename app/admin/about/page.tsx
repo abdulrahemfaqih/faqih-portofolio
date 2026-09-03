@@ -8,6 +8,7 @@ import FileUpload from "@/components/admin/FileUpload";
 import ConfirmModal from "@/components/admin/ConfirmModal";
 import { Plus, Trash, PencilSimple, Spinner, Check } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
+import { revalidateHomeAction } from "@/app/actions/revalidate";
 
 const PLATFORM_OPTIONS = [
   { value: "github", label: "GitHub" },
@@ -126,6 +127,7 @@ export default function AdminAboutPage() {
         if (data) setAboutId(data.id);
       }
 
+      await revalidateHomeAction();
       toast.success("Profil About Me berhasil disimpan!");
     } catch (err: any) {
       toast.error("Gagal menyimpan: " + err.message);
@@ -180,6 +182,7 @@ export default function AdminAboutPage() {
         toast.success("Social link ditambahkan");
       }
 
+      await revalidateHomeAction();
       setIsSocialModalOpen(false);
       fetchData();
     } catch (err: any) {
@@ -199,6 +202,7 @@ export default function AdminAboutPage() {
         .eq("id", deleteTargetId);
       if (error) throw error;
 
+      await revalidateHomeAction();
       toast.success("Social link berhasil dihapus");
       setDeleteTargetId(null);
       fetchData();

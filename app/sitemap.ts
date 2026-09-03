@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
 import { createBuildTimeClient } from "@/lib/supabase/build-client";
 
+export const revalidate = 3600; // Revalidate sitemap tiap 1 jam
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = createBuildTimeClient();
 

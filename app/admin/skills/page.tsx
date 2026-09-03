@@ -6,6 +6,7 @@ import type { Skill, SkillCategory } from "@/types/supabase";
 import ConfirmModal from "@/components/admin/ConfirmModal";
 import { Plus, Trash, PencilSimple, Spinner } from "@phosphor-icons/react";
 import toast from "react-hot-toast";
+import { revalidateHomeAction } from "@/app/actions/revalidate";
 
 const CATEGORIES: { value: SkillCategory; label: string; description: string }[] = [
   {
@@ -117,6 +118,7 @@ export default function AdminSkillsPage() {
         toast.success("Keahlian baru berhasil ditambahkan");
       }
 
+      await revalidateHomeAction();
       setIsModalOpen(false);
       fetchSkills();
     } catch (err: any) {
@@ -136,6 +138,7 @@ export default function AdminSkillsPage() {
         .eq("id", deleteTargetId);
       if (error) throw error;
 
+      await revalidateHomeAction();
       toast.success("Keahlian berhasil dihapus");
       setDeleteTargetId(null);
       fetchSkills();

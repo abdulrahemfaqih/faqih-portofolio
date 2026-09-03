@@ -11,6 +11,10 @@ interface Params {
   params: Promise<{ slug: string }>;
 }
 
+// ISR: revalidate halaman setiap 60 detik di Vercel/produksi
+export const revalidate = 60;
+export const dynamicParams = true;
+
 // Menggunakan build-time client (tanpa cookies) karena berjalan di build time
 export async function generateStaticParams() {
   const supabase = createBuildTimeClient();
